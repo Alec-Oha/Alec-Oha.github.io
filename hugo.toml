@@ -1,0 +1,17 @@
+baseURL = "https://alecohanesian.com/"
+languageCode = "en-us"
+title = "Alec Ohanesian"
+theme = "alec"
+
+[params]
+  description = "Manufacturing Engineer & Production Leader"
+  author = "Alec Ohanesian"
+
+[taxonomies]
+  genre = "genres"
+  tag = "tags"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

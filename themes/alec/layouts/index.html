@@ -1,0 +1,188 @@
+{{ define "main" }}
+<div id="canvas-container"></div>
+
+<button class="reset-button" id="resetButton">
+    <div class="status-dot"></div>
+    <span>Reset</span>
+</button>
+
+<button class="menu-button" id="menuButton">
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+</button>
+
+<nav class="side-menu" id="sideMenu">
+    <div class="menu-links">
+        <a href="#projects" class="menu-link">PROJECTS</a>
+        <a href="#writing" class="menu-link">WRITING</a>
+        <a href="#gallery" class="menu-link">GALLERY</a>
+        <a href="#experience" class="menu-link">EXPERIENCE</a>
+        <a href="#contact" class="menu-link">CONTACT</a>
+    </div>
+</nav>
+
+<div class="landing" id="landing">
+    <div class="click-hint" id="clickHint">
+        <div class="click-icon"></div>
+        <span>Click</span>
+    </div>
+    <div class="click-hint-2" id="clickHint2">
+        <div class="click-icon"></div>
+        <span>Click</span>
+    </div>
+    <div class="quadrant-labels" id="quadrantLabels">
+        <div class="quadrant-label" data-section="projects">PROJECTS</div>
+        <div class="quadrant-label" data-section="writing">WRITING</div>
+        <div class="quadrant-label" data-section="gallery">GALLERY</div>
+        <div class="quadrant-label" data-section="experience">EXPERIENCE</div>
+    </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="content-section" id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+        {{ range where .Site.RegularPages "Section" "projects" }}
+        <div class="project-card">
+            {{ with .Params.image }}<img src="{{ . }}" alt="{{ $.Title }}" class="project-image">{{ else }}<div class="project-placeholder">Project Image</div>{{ end }}
+            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+            <p>{{ .Summary }}</p>
+        </div>
+        {{ else }}
+        <div class="project-card">
+            <div class="project-placeholder">Project Image</div>
+            <h3>Project Title</h3>
+            <p>Project description will go here.</p>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<!-- WRITING -->
+<section class="content-section" id="writing">
+    <h2>Writing</h2>
+
+    {{ $essays := where (where .Site.RegularPages "Section" "posts") ".Params.type" "essay" }}
+    {{ if $essays }}
+    <div class="writing-category">
+        <div class="writing-list">
+            {{ range $essays }}
+            <article class="writing-item">
+                <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+                <div class="writing-meta">{{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read</div>
+                <p>{{ .Summary }}</p>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
+    {{ $reviews := where (where .Site.RegularPages "Section" "posts") ".Params.type" "book-review" }}
+    {{ if $reviews }}
+    <div class="writing-category">
+        <h3 class="category-title">Book Reviews</h3>
+        <div class="writing-list">
+            {{ range $reviews }}
+            <article class="writing-item">
+                <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+                <div class="writing-meta">{{ .Params.rating }}/10 · {{ .Params.genre }}</div>
+                <p>{{ .Summary }}</p>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</section>
+
+<!-- GALLERY -->
+<section class="content-section" id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+        <div class="gallery-folder">
+            <div class="folder-icon">📁</div>
+            <h3>Travel</h3>
+            <p>Photos coming soon</p>
+        </div>
+        <div class="gallery-folder">
+            <div class="folder-icon">📁</div>
+            <h3>Projects</h3>
+            <p>Photos coming soon</p>
+        </div>
+        <div class="gallery-folder">
+            <div class="folder-icon">📁</div>
+            <h3>Events</h3>
+            <p>Photos coming soon</p>
+        </div>
+        <div class="gallery-folder">
+            <div class="folder-icon">📁</div>
+            <h3>Misc</h3>
+            <p>Photos coming soon</p>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="content-section" id="experience">
+    <h2>Experience</h2>
+    <div class="experience-container">
+        <div class="experience-section">
+            <h3>Work Experience</h3>
+            <div class="timeline-item">
+                <h4>Production Leader – Turbines</h4>
+                <div class="timeline-meta">Rolls Royce | June 2025 – Present</div>
+                <ul>
+                    <li>Responsible for $10M in annual production output and adherence to quality and delivery targets for AE3007 and F-130 engine programs.</li>
+                    <li>Led daily troubleshooting of machining/assembly issues in a high-mix aerospace environment</li>
+                    <li>Spearheaded automation of division-wide labor dashboard (Excel/Power BI)</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h4>Manufacturing Engineer – Critically Rotating Parts</h4>
+                <div class="timeline-meta">Rolls Royce | August 2024 – July 2025</div>
+                <ul>
+                    <li>Authored and executed a full Process Verification Audit (PVA), resulting in 12% rework reduction</li>
+                    <li>Responsible for CAD, CAM, simulation, and implementation of milling operations and fixtures</li>
+                    <li>Authored process documentation for ISO9001 and ITAR compliance</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h4>Manufacturing Engineering Intern</h4>
+                <div class="timeline-meta">Edwards Lifesciences | June 2022 – September 2022</div>
+                <ul>
+                    <li>Designed and prototyped pilot line fixtures using SolidWorks</li>
+                    <li>Supported implementation of hydrophilic coating process</li>
+                    <li>Conducted component cost analysis resulting in 6% cost reduction</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-section">
+            <h3>Education</h3>
+            <div class="timeline-item">
+                <h4>B.S. Manufacturing Engineering</h4>
+                <div class="timeline-meta">California Polytechnic State University, San Luis Obispo | 2020 – 2024</div>
+            </div>
+        </div>
+
+        <div class="experience-section">
+            <h3>Interests</h3>
+            <div class="interests-grid">
+                <div class="interest-tag">CNC Machining</div>
+                <div class="interest-tag">3D Printing</div>
+                <div class="interest-tag">Process Optimization</div>
+                <div class="interest-tag">Automation</div>
+                <div class="interest-tag">CAD/CAM</div>
+                <div class="interest-tag">Lean Manufacturing</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<button class="back-to-top" id="backToTop">↑ Back to Top</button>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="/js/main.js"></script>
+{{ end }}

@@ -1,0 +1,36 @@
+{{ define "main" }}
+<nav class="navbar">
+    <a href="/">← Back to Portfolio</a>
+</nav>
+
+<article class="content">
+    <header class="review-header">
+        {{ if eq .Params.type "book-review" }}
+        <div class="book-info">
+            <div class="book-details">
+                <h1 class="book-title">{{ .Title }}</h1>
+                <div class="book-author">by {{ .Params.book_author }}</div>
+                <div class="book-meta">
+                    {{ with .Params.published }}<div class="book-meta-item"><strong>Published:</strong> {{ . }}</div>{{ end }}
+                    {{ with .Params.genre }}<div class="book-meta-item"><strong>Genre:</strong> {{ . }}</div>{{ end }}
+                </div>
+                <div class="rating">
+                    {{ with .Params.rating }}
+                    <span class="rating-number">{{ . }}/10</span>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        {{ else }}
+        <h1 class="post-title">{{ .Title }}</h1>
+        <div class="post-meta">{{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read</div>
+        {{ end }}
+    </header>
+
+    <div class="review-content">
+        {{ .Content }}
+    </div>
+
+    <a href="/#writing" class="back-link">← Back to Writing</a>
+</article>
+{{ end }}
