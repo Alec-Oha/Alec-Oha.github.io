@@ -2,7 +2,7 @@
 title: "The Space Trilogy"
 type: "book-review"
 book_author: "C.S. Lewis"
-published: "1938–1945"
+book_published: "1938–1945"
 genre: "Science Fiction"
 rating: 2.6
 date: 2024-01-01
