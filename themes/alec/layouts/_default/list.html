@@ -1,0 +1,13 @@
+{{ define "main" }}
+<nav class="navbar">
+    <a href="/">← Back to Portfolio</a>
+</nav>
+<div class="content">
+    <h1>{{ .Title }}</h1>
+    {{ range .Pages }}
+    <article class="writing-item">
+        <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+    </article>
+    {{ end }}
+</div>
+{{ end }}

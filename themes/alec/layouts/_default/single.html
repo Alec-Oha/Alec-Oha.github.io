@@ -11,7 +11,7 @@
                 <h1 class="book-title">{{ .Title }}</h1>
                 <div class="book-author">by {{ .Params.book_author }}</div>
                 <div class="book-meta">
-                    {{ with .Params.published }}<div class="book-meta-item"><strong>Published:</strong> {{ . }}</div>{{ end }}
+                    {{ with .Params.book_published }}<div class="book-meta-item"><strong>Published:</strong> {{ . }}</div>{{ end }}
                     {{ with .Params.genre }}<div class="book-meta-item"><strong>Genre:</strong> {{ . }}</div>{{ end }}
                 </div>
                 <div class="rating">
