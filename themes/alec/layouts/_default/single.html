@@ -1,36 +1,24 @@
 {{ define "main" }}
 <nav class="navbar">
-    <a href="/">← Back to Portfolio</a>
+    <a href="/">← Back</a>
 </nav>
 
 <article class="content">
     <header class="review-header">
         {{ if eq .Params.type "book-review" }}
-        <div class="book-info">
-            <div class="book-details">
-                <h1 class="book-title">{{ .Title }}</h1>
-                <div class="book-author">by {{ .Params.book_author }}</div>
-                <div class="book-meta">
-                    {{ with .Params.book_published }}<div class="book-meta-item"><strong>Published:</strong> {{ . }}</div>{{ end }}
-                    {{ with .Params.genre }}<div class="book-meta-item"><strong>Genre:</strong> {{ . }}</div>{{ end }}
-                </div>
-                <div class="rating">
-                    {{ with .Params.rating }}
-                    <span class="rating-number">{{ . }}/10</span>
-                    {{ end }}
-                </div>
-            </div>
+        <h1 class="book-title">{{ .Title }}</h1>
+        <div class="book-author">by {{ .Params.book_author }}</div>
+        <div class="book-meta">
+            {{ with .Params.book_published }}<div class="book-meta-item"><strong>Published:</strong> {{ . }}</div>{{ end }}
+            {{ with .Params.genre }}<div class="book-meta-item"><strong>Genre:</strong> {{ . }}</div>{{ end }}
         </div>
+        {{ with .Params.rating }}<div class="rating-number">{{ . }}/10</div>{{ end }}
         {{ else }}
         <h1 class="post-title">{{ .Title }}</h1>
-        <div class="post-meta">{{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read</div>
+        <div class="post-meta">{{ .Date.Format "January 2, 2006" }}</div>
         {{ end }}
     </header>
-
-    <div class="review-content">
-        {{ .Content }}
-    </div>
-
-    <a href="/#writing" class="back-link">← Back to Writing</a>
+    <div class="review-content">{{ .Content }}</div>
+    <a href="/" class="back-link">← Back</a>
 </article>
 {{ end }}

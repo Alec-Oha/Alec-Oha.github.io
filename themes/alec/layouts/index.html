@@ -1,12 +1,27 @@
 {{ define "main" }}
 
 <header class="topnav" id="topnav">
-    <a href="/" class="topnav-logo">Alec Ohanesian</a>
     <nav class="topnav-links">
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#writing">Writing</a>
     </nav>
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" style="width:44px;height:44px;border:2px solid var(--border-mid);border-radius:6px;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0;">
+        <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;min-width:32px;min-height:32px;display:block;stroke:var(--icon);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;min-width:32px;min-height:32px;display:none;stroke:var(--icon);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
     </button>
@@ -33,63 +48,34 @@
 
 <section class="content-section" id="experience">
     <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Experience</h2>
-        </div>
+        <h2 class="section-title">Experience</h2>
         <div class="exp-cols">
             <div>
                 <div class="exp-label">Work</div>
                 <div class="exp-item">
-                    <div class="exp-header">
-                        <span class="exp-role">Production Manager</span>
-                        <span class="exp-date">2026 – Current</span>
-                    </div>
+                    <div class="exp-header"><span class="exp-role">Production Manager</span><span class="exp-date">2026 – Current</span></div>
                     <div class="exp-company">Karman Space &amp; Defense</div>
-                    <ul class="exp-bullets">
-                        <li>$10M+ annual production output</li>
-                        <li>High-mix aerospace environment</li>
-                        <li>Division-wide dashboard automation</li>
-                    </ul>
+                    <ul class="exp-bullets"><li>$10M+ annual production output</li><li>High-mix aerospace environment</li><li>Division-wide dashboard automation</li></ul>
                 </div>
                 <div class="exp-item">
-                    <div class="exp-header">
-                        <span class="exp-role">Manufacturing Engineer</span>
-                        <span class="exp-date">2024 – 2026</span>
-                    </div>
+                    <div class="exp-header"><span class="exp-role">Manufacturing Engineer</span><span class="exp-date">2024 – 2026</span></div>
                     <div class="exp-company">Rolls-Royce</div>
-                    <ul class="exp-bullets">
-                        <li>PVA audit — 12% rework reduction</li>
-                        <li>CAD, CAM, simulation, milling ops</li>
-                        <li>ISO9001 + ITAR documentation</li>
-                    </ul>
+                    <ul class="exp-bullets"><li>PVA audit — 12% rework reduction</li><li>CAD, CAM, simulation, milling ops</li><li>ISO9001 + ITAR documentation</li></ul>
                 </div>
             </div>
             <div>
                 <div class="exp-label">Education</div>
                 <div class="exp-item">
-                    <div class="exp-header">
-                        <span class="exp-role">MBA</span>
-                        <span class="exp-date">In Progress</span>
-                    </div>
+                    <div class="exp-header"><span class="exp-role">MBA</span><span class="exp-date">In Progress</span></div>
                     <div class="exp-company">UCLA Anderson</div>
                 </div>
                 <div class="exp-item">
-                    <div class="exp-header">
-                        <span class="exp-role">B.S. Manufacturing Engineering</span>
-                        <span class="exp-date">2020 – 2024</span>
-                    </div>
+                    <div class="exp-header"><span class="exp-role">B.S. Manufacturing Engineering</span><span class="exp-date">2020 – 2024</span></div>
                     <div class="exp-company">Cal Poly SLO</div>
                 </div>
                 <div class="exp-label" style="margin-top:1.5rem;">Skills</div>
                 <div class="skills-grid">
-                    <span class="skill-tag">Siemens NX</span>
-                    <span class="skill-tag">SolidWorks</span>
-                    <span class="skill-tag">Mastercam</span>
-                    <span class="skill-tag">SAP ERP</span>
-                    <span class="skill-tag">Power BI</span>
-                    <span class="skill-tag">CNC Machining</span>
-                    <span class="skill-tag">Lean Mfg</span>
-                    <span class="skill-tag">SQL / VBA</span>
+                    <span class="skill-tag">Siemens NX</span><span class="skill-tag">SolidWorks</span><span class="skill-tag">Mastercam</span><span class="skill-tag">SAP ERP</span><span class="skill-tag">Power BI</span><span class="skill-tag">CNC Machining</span><span class="skill-tag">Lean Mfg</span><span class="skill-tag">SQL / VBA</span>
                 </div>
             </div>
         </div>
@@ -98,43 +84,20 @@
 
 <section class="content-section alt" id="projects">
     <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Projects</h2>
-        </div>
+        <h2 class="section-title">Projects</h2>
         <div class="project-row">
-            <div>
-                <h3>Avalon Aero — Excalibur</h3>
-                <p>Co-founded aerospace startup competing in the DARPA Heavy Lift Challenge. Swashplateless coaxial helicopter targeting 130 lb payload on a 25 lb airframe.</p>
-            </div>
+            <div><h3>Avalon Aero — Excalibur</h3><p>Co-founded aerospace startup competing in the DARPA Heavy Lift Challenge. Swashplateless coaxial helicopter targeting 130 lb payload on a 25 lb airframe.</p></div>
             <span class="project-badge">DARPA</span>
         </div>
-        <div class="project-row">
-            <div>
-                <h3>CNC Laser Measuring System</h3>
-                <p>Led deployment of BLUM laser measurement on Makino A99s at Rolls-Royce, automating tool offset correction and broken tool detection.</p>
-            </div>
-        </div>
-        <div class="project-row">
-            <div>
-                <h3>Automated Eye Tracking System</h3>
-                <p>PLC-controlled real-time eye tracking. Programmed, fabricated, and assembled all hardware independently.</p>
-            </div>
-        </div>
-        <div class="project-row">
-            <div>
-                <h3>Heart Valve Assembly Fixture</h3>
-                <p>Capstone with Edwards Lifesciences — ergonomic fixture implemented across multiple facilities to reduce cycle time and ergonomic risk.</p>
-            </div>
-        </div>
+        <div class="project-row"><div><h3>CNC Laser Measuring System</h3><p>Led deployment of BLUM laser measurement on Makino A99s at Rolls-Royce, automating tool offset correction and broken tool detection.</p></div></div>
+        <div class="project-row"><div><h3>Automated Eye Tracking System</h3><p>PLC-controlled real-time eye tracking. Programmed, fabricated, and assembled all hardware independently.</p></div></div>
+        <div class="project-row"><div><h3>Heart Valve Assembly Fixture</h3><p>Capstone with Edwards Lifesciences — ergonomic fixture implemented across multiple facilities to reduce cycle time and ergonomic risk.</p></div></div>
     </div>
 </section>
 
 <section class="content-section" id="writing">
     <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Writing</h2>
-        </div>
-
+        <h2 class="section-title">Writing</h2>
         <div class="writing-block">
             <div class="writing-cat-label">Essays</div>
             {{ range where (where .Site.RegularPages "Section" "posts") ".Params.type" "essay" }}
@@ -147,16 +110,15 @@
             {{ else }}
             <div class="blog-row">
                 <span class="blog-tag">Essay</span>
-                <h4><a href="#">Mutation of a Digital Nation</a></h4>
-                <p>How the internet's promise of liberation became the architecture of our division — from Katz's 1997 digital utopia to algorithmic echo chambers, homophily, and the Dead Internet Theory.</p>
+                <h4><a href="/posts/mutation-digital-nation/">Mutation of a Digital Nation</a></h4>
+                <p>How the internet's promise of liberation became the architecture of our division.</p>
                 <span class="blog-date">Jul 2025</span>
             </div>
             {{ end }}
         </div>
-
         <div class="writing-block">
             <div class="writing-cat-label">Book Reviews</div>
-            {{ range where (where .Site.RegularPages "Section" "posts") ".Params.type" "book-review" }}
+            {{ range sort (where (where .Site.RegularPages "Section" "posts") ".Params.type" "book-review") ".Params.rating" "desc" }}
             <article class="writing-row">
                 <div class="w-meta">
                     <span class="w-rating">{{ .Params.rating }}/10</span>
@@ -167,11 +129,6 @@
                     <p>{{ .Summary }}</p>
                 </div>
             </article>
-            {{ else }}
-            <div class="writing-row">
-                <div class="w-meta"><span class="w-rating">8.5/10</span><span class="w-genre">Fantasy</span></div>
-                <div class="w-main"><h4>The Black Company — Glen Cook</h4><p>Grimdark fantasy told through the Company's Annalist. No map, no magic system — Cook makes up for it through sheer gritty badassery.</p></div>
-            </div>
             {{ end }}
         </div>
     </div>
