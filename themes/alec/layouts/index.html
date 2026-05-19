@@ -100,7 +100,7 @@
         <h2 class="section-title">Writing</h2>
         <div class="writing-block">
             <div class="writing-cat-label">Essays</div>
-            {{ range where (where .Site.RegularPages "Section" "posts") ".Params.type" "essay" }}
+            {{ range where .Site.RegularPages ".Params.type" "essay" }}
             <div class="blog-row">
                 <span class="blog-tag">Essay</span>
                 <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
@@ -118,7 +118,7 @@
         </div>
         <div class="writing-block">
             <div class="writing-cat-label">Book Reviews</div>
-            {{ range sort (where (where .Site.RegularPages "Section" "posts") ".Params.type" "book-review") ".Params.rating" "desc" }}
+            {{ range sort (where .Site.RegularPages ".Params.type" "book-review") ".Params.rating" "desc" }}
             <article class="writing-row">
                 <div class="w-meta">
                     <span class="w-rating">{{ .Params.rating }}/10</span>
