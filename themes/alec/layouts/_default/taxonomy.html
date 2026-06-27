@@ -1,13 +1,11 @@
 {{ define "main" }}
-<nav class="navbar">
-    <a href="/">← Back to Portfolio</a>
-</nav>
+<nav class="navbar"><a href="/">← Back</a></nav>
 <div class="content">
-    <h1>{{ .Title }}</h1>
+    <h1 class="post-title">{{ .Title }}</h1>
     {{ range .Pages }}
-    <article class="writing-item">
-        <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
-    </article>
+    <div class="writing-row">
+        <div class="w-main"><h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4></div>
+    </div>
     {{ end }}
 </div>
 {{ end }}

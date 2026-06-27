@@ -1,17 +1,14 @@
-// Dark mode toggle
 const toggle = document.getElementById('themeToggle');
 const moonIcon = document.getElementById('iconMoon');
 const sunIcon = document.getElementById('iconSun');
 
 if (toggle) {
-    // Restore saved preference
     const saved = localStorage.getItem('theme');
     if (saved === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
         if (moonIcon) moonIcon.style.display = 'none';
         if (sunIcon) sunIcon.style.display = 'block';
     }
-
     toggle.addEventListener('click', () => {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         if (isDark) {
@@ -28,7 +25,6 @@ if (toggle) {
     });
 }
 
-// Mobile drawer
 const hamburger = document.getElementById('hamburger');
 const drawer = document.getElementById('drawer');
 const drawerOverlay = document.getElementById('drawerOverlay');

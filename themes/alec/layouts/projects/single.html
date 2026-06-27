@@ -1,0 +1,16 @@
+{{ define "main" }}
+<nav class="navbar"><a href="/">← Back</a></nav>
+<article class="content">
+    <header class="review-header">
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:0.5rem;">
+            <h1 class="post-title" style="margin-bottom:0;">{{ .Title }}</h1>
+            {{ with .Params.badge }}<span class="project-badge" style="font-size:0.75rem;padding:3px 9px;">{{ . }}</span>{{ end }}
+        </div>
+        {{ with .Params.external_link }}
+        <a href="{{ . }}" target="_blank" style="font-size:0.85rem;color:var(--text-muted);text-decoration:underline;text-underline-offset:3px;">{{ . }} ↗</a>
+        {{ end }}
+    </header>
+    <div class="review-content">{{ .Content }}</div>
+    <a href="/" class="back-link">← Back</a>
+</article>
+{{ end }}

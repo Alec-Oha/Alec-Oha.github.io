@@ -5,8 +5,9 @@
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#writing">Writing</a>
+        <a href="/resume.pdf" target="_blank" class="resume-link">Resume ↗</a>
     </nav>
-    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" style="width:44px;height:44px;border:2px solid var(--border-mid);border-radius:6px;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0;">
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" style="width:44px;height:44px;border:2px solid var(--border-mid);border-radius:6px;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0;transition:background 0.2s;">
         <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;min-width:32px;min-height:32px;display:block;stroke:var(--icon);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" viewBox="0 0 24 24">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
@@ -31,6 +32,7 @@
     <a href="#experience" class="drawer-link">Experience</a>
     <a href="#projects" class="drawer-link">Projects</a>
     <a href="#writing" class="drawer-link">Writing</a>
+    <a href="/resume.pdf" target="_blank" class="drawer-link">Resume ↗</a>
 </nav>
 <div class="drawer-overlay" id="drawerOverlay"></div>
 
@@ -42,6 +44,8 @@
             <a href="mailto:AlecOhanesian@gmail.com">Email</a>
             <span>·</span>
             <a href="https://www.linkedin.com/in/alecohanesian" target="_blank">LinkedIn</a>
+            <span>·</span>
+            <a href="/resume.pdf" target="_blank">Resume</a>
         </div>
     </div>
 </section>
@@ -52,17 +56,37 @@
         <div class="exp-cols">
             <div>
                 <div class="exp-label">Work</div>
+
                 <div class="exp-item">
                     <div class="exp-header"><span class="exp-role">Production Manager</span><span class="exp-date">2026 – Current</span></div>
                     <div class="exp-company">Karman Space &amp; Defense</div>
-                    <ul class="exp-bullets"><li>$10M+ annual production output</li><li>High-mix aerospace environment</li><li>Division-wide dashboard automation</li></ul>
+                    <ul class="exp-bullets">
+                        <li>Led aerospace manufacturing operations across a 40,000 sq ft facility, directing 75 employees across three shifts.</li>
+                        <li>Optimized production flow through bottleneck identification, labor balancing, and structured shift communication.</li>
+                        <li>Improved factory throughput through data-driven leadership, deploying ERP and Power BI dashboards for real-time WIP and delivery visibility.</li>
+                    </ul>
                 </div>
+
                 <div class="exp-item">
-                    <div class="exp-header"><span class="exp-role">Manufacturing Engineer</span><span class="exp-date">2024 – 2026</span></div>
+                    <div class="exp-header"><span class="exp-role">Production Leader – Turbines</span><span class="exp-date">2024 – 2026</span></div>
                     <div class="exp-company">Rolls-Royce</div>
-                    <ul class="exp-bullets"><li>PVA audit — 12% rework reduction</li><li>CAD, CAM, simulation, milling ops</li><li>ISO9001 + ITAR documentation</li></ul>
+                    <ul class="exp-bullets">
+                        <li>Led two production departments yielding $22M in annual output across critical engine programs.</li>
+                        <li>Managed 14 direct reports; drove daily problem solving across machining and inspection, achieving 4% productivity increase.</li>
+                        <li>Developed automated labor/sales tracking dashboard providing real-time visibility across three shifts and 40+ team members.</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header"><span class="exp-role">Founder</span><span class="exp-date">2025 – Present</span></div>
+                    <div class="exp-company">Avalon Aero</div>
+                    <ul class="exp-bullets">
+                        <li>Co-founded Avalon Aero LLC and led development of a swashplateless coaxial UAS for the DARPA LIFT Challenge.</li>
+                        <li>Designed novel cyclic pitch control system eliminating traditional swashplate mechanisms, reducing system weight by 8–12 lbs.</li>
+                    </ul>
                 </div>
             </div>
+
             <div>
                 <div class="exp-label">Education</div>
                 <div class="exp-item">
@@ -73,9 +97,26 @@
                     <div class="exp-header"><span class="exp-role">B.S. Manufacturing Engineering</span><span class="exp-date">2020 – 2024</span></div>
                     <div class="exp-company">Cal Poly SLO</div>
                 </div>
+
                 <div class="exp-label" style="margin-top:1.5rem;">Skills</div>
                 <div class="skills-grid">
-                    <span class="skill-tag">Siemens NX</span><span class="skill-tag">SolidWorks</span><span class="skill-tag">Mastercam</span><span class="skill-tag">SAP ERP</span><span class="skill-tag">Power BI</span><span class="skill-tag">CNC Machining</span><span class="skill-tag">Lean Mfg</span><span class="skill-tag">SQL / VBA</span>
+                    <span class="skill-tag">Siemens NX</span>
+                    <span class="skill-tag">SolidWorks</span>
+                    <span class="skill-tag">Mastercam</span>
+                    <span class="skill-tag">SAP ERP</span>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">CNC Machining</span>
+                    <span class="skill-tag">Lean Mfg</span>
+                    <span class="skill-tag">SQL / VBA</span>
+                </div>
+
+                <div class="exp-label" style="margin-top:1.5rem;">Involvement</div>
+                <div class="exp-item">
+                    <div class="exp-header"><span class="exp-role">YNG – YPO Next Generation</span><span class="exp-date">2026</span></div>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-header"><span class="exp-role">Eagle Scout</span><span class="exp-date">2019</span></div>
+                    <div class="exp-company">Boy Scouts of America</div>
                 </div>
             </div>
         </div>
@@ -85,13 +126,30 @@
 <section class="content-section alt" id="projects">
     <div class="container">
         <h2 class="section-title">Projects</h2>
-        <div class="project-row">
-            <div><h3>Avalon Aero — Excalibur</h3><p>Co-founded aerospace startup competing in the DARPA Heavy Lift Challenge. Swashplateless coaxial helicopter targeting 130 lb payload on a 25 lb airframe.</p></div>
-            <span class="project-badge">DARPA</span>
+
+        <!-- Featured: Avalon Aero -->
+        <div class="project-featured">
+            <div class="project-featured-header">
+                <div>
+                    <h3><a href="/projects/avalon-aero/">Avalon Aero — Excalibur</a></h3>
+                    <div class="project-featured-sub">
+                        <span class="project-badge">DARPA LIFT Challenge</span>
+                        <a href="https://www.avalon-aero.com/" target="_blank" class="project-ext-link">avalon-aero.com ↗</a>
+                    </div>
+                </div>
+            </div>
+            <p>Co-founded aerospace startup developing a swashplateless coaxial UAS targeting a 4:1 payload-to-weight ratio. Competing in the DARPA LIFT Challenge with a novel cyclic pitch control system that eliminates traditional swashplate mechanisms, reducing system weight by 8–12 lbs.</p>
         </div>
-        <div class="project-row"><div><h3>CNC Laser Measuring System</h3><p>Led deployment of BLUM laser measurement on Makino A99s at Rolls-Royce, automating tool offset correction and broken tool detection.</p></div></div>
-        <div class="project-row"><div><h3>Automated Eye Tracking System</h3><p>PLC-controlled real-time eye tracking. Programmed, fabricated, and assembled all hardware independently.</p></div></div>
-        <div class="project-row"><div><h3>Heart Valve Assembly Fixture</h3><p>Capstone with Edwards Lifesciences — ergonomic fixture implemented across multiple facilities to reduce cycle time and ergonomic risk.</p></div></div>
+
+        <div class="project-row">
+            <div><h3>CNC Laser Measuring System</h3><p>Led deployment of BLUM laser measurement on Makino A99s at Rolls-Royce, automating tool offset correction and broken tool detection.</p></div>
+        </div>
+        <div class="project-row">
+            <div><h3>Automated Eye Tracking System</h3><p>PLC-controlled real-time eye tracking. Programmed, fabricated, and assembled all hardware independently.</p></div>
+        </div>
+        <div class="project-row">
+            <div><h3>Heart Valve Assembly Fixture</h3><p>Capstone with Edwards Lifesciences — ergonomic fixture implemented across multiple facilities to reduce cycle time.</p></div>
+        </div>
     </div>
 </section>
 
@@ -107,18 +165,11 @@
                 <p>{{ .Summary }}</p>
                 <span class="blog-date">{{ .Date.Format "Jan 2006" }}</span>
             </div>
-            {{ else }}
-            <div class="blog-row">
-                <span class="blog-tag">Essay</span>
-                <h4><a href="/posts/mutation-digital-nation/">Mutation of a Digital Nation</a></h4>
-                <p>How the internet's promise of liberation became the architecture of our division.</p>
-                <span class="blog-date">Jul 2025</span>
-            </div>
             {{ end }}
         </div>
         <div class="writing-block">
             <div class="writing-cat-label">Book Reviews</div>
-            {{ range sort (where .Site.RegularPages ".Params.type" "book-review") ".Params.rating" "desc" }}
+            {{ range sort (where .Site.RegularPages ".Params.type" "book-review") ".Weight" }}
             <article class="writing-row">
                 <div class="w-meta">
                     <span class="w-rating">{{ .Params.rating }}/10</span>
