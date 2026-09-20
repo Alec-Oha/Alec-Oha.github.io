@@ -6,7 +6,7 @@ genre: "Fantasy"
 rating: 8.5
 weight: 1
 date: 2024-01-01
-summary: "Grimdark fantasy told through the Company's Annalist. No map, no magic system — Cook makes up for it through sheer gritty badassery."
+summary: "Grimdark fantasy told through the Company's Annalist. No map, no magic system, Cook makes up for it through sheer gritty badassery."
 ---
 
 Ooooooh mama was this one a banger. Four book series set in a grim dark fantasy world following the adventures of... you guessed it, The Black Company! What makes these books awesome is the format they're written in. Each book is told from the perspective of the Company's Annalist, essentially the company's historian, responsible for recording the travels, trials, and tribulations of the company and its constituents. The characters stay more or less the same throughout the series but the lens which the reader sees them through changes with each annalist. Each book really feels like the personal journal of whichever character is annalist at the moment.

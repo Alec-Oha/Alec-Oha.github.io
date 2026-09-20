@@ -80,7 +80,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
 
 /* HERO */
 .hero-bio { padding: calc(var(--nav-h) + 3rem) 5% 3rem; border-bottom: 0.5px solid var(--border); }
-.hero-name { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--text); margin-bottom: 0.75rem; line-height: 1.1; }
+.hero-name { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--text); line-height: 1.2; display: inline; margin-right: 0.4rem; }
 .bio-text { font-size: 1rem; color: var(--text-muted); line-height: 1.85; max-width: 580px; margin-bottom: 1rem; }
 .bio-links { display: flex; gap: 0.5rem; align-items: center; font-size: 0.9rem; flex-wrap: wrap; }
 .bio-links a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }

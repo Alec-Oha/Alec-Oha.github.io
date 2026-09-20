@@ -2,7 +2,7 @@
 title: "Mutation of a Digital Nation"
 type: "essay"
 date: 2025-07-16
-summary: "How the internet's promise of liberation became the architecture of our division — from Katz's 1997 digital utopia to algorithmic echo chambers, homophily, and the Dead Internet Theory."
+summary: "How the internet's promise of liberation became the architecture of our division, from Katz's 1997 digital utopia to algorithmic echo chambers, homophily, and the Dead Internet Theory."
 ---
 
 The term 'echo chamber' started showing up in online discourse as early as 1997, when John Katz wrote a WIRED article, Birth of a Digital Nation. Katz's article sees the internet as the force that would free people from the limitations of traditional media programming. Talk shows, newspapers, and radios were no longer the only vehicles for news. The net, as Katz calls it, connected thousands of people, and completely transformed the way we're fed information. But the internet not only allowed an unbridled flow of information in, it allowed for an unlimited flow out. Katz saw this virtual liberation as a way to dismantle top-down media gatekeeping and spark political awakening.
