@@ -1,4 +1,4 @@
-const LINE_Y = 280, COL_W = 195, START = 80, LEAD = 60, CARD_H = 140;
+const LINE_Y = 280, COL_W = 195, START = 80, LEAD = 60, CARD_H = 260;
 
 const books = [
   // 2023
@@ -48,7 +48,7 @@ let xi = 0;
 const canvas = document.getElementById('tlCanvas');
 const totalW = START + xi * COL_W + START;
 canvas.style.minWidth = totalW + 'px';
-canvas.style.height = '620px';
+canvas.style.height = '760px';
 document.getElementById('tlLine').style.top = LINE_Y + 'px';
 
 let xi2 = 0;
@@ -74,9 +74,25 @@ function getTag(b) {
   return {bg:'var(--c-fiction-bg)',c:'var(--c-fiction)',label:'Fiction'};
 }
 function getDot(b) {
-  if (b.reviewed) return {size:14,border:'2.5px solid var(--text)'};
+  if (b.reviewed) return {size:14,border:'2.5px solid var(--yellow)'};
   if (b.type === 'nonfiction') return {size:10,border:'2px solid var(--c-nonfic)'};
   return {size:10,border:'2px solid var(--c-fiction)'};
+}
+
+// Fetch a cover thumbnail from Open Library. Result is cached on the book object
+// so the modal doesn't need to re-fetch when the card cover already resolved it.
+function fetchCover(b, callback) {
+  if (b._coverUrl !== undefined) { callback(b._coverUrl); return; }
+  const q = encodeURIComponent(b.title.replace(/\s+(series|trilogy)$/i,''));
+  const a = encodeURIComponent(b.author.split(' ').pop());
+  fetch(`https://openlibrary.org/search.json?title=${q}&author=${a}&limit=1&fields=cover_i`)
+    .then(r => r.json())
+    .then(data => {
+      const id = data?.docs?.[0]?.cover_i;
+      b._coverUrl = id ? `https://covers.openlibrary.org/b/id/${id}-M.jpg` : null;
+      callback(b._coverUrl);
+    })
+    .catch(() => { b._coverUrl = null; callback(null); });
 }
 
 books.forEach(b => {
@@ -107,6 +123,7 @@ books.forEach(b => {
   }
 
   card.innerHTML = `
+    <div class="card-cover-placeholder">···</div>
     <span class="card-tag" style="background:${ts.bg};color:${ts.c};">${ts.label}</span>
     <div class="card-title">${b.title}</div>
     <div class="card-author">${b.author}</div>
@@ -115,6 +132,20 @@ books.forEach(b => {
   `;
   card.addEventListener('click', () => openModal(b));
   canvas.appendChild(card);
+
+  const coverPh = card.querySelector('.card-cover-placeholder');
+  fetchCover(b, url => {
+    if (url) {
+      const img = document.createElement('img');
+      img.className = 'card-cover';
+      img.src = url;
+      img.alt = b.title;
+      img.onerror = () => { coverPh.textContent = b.title.length > 16 ? b.title.slice(0,16) + '…' : b.title; };
+      img.onload = () => coverPh.replaceWith(img);
+    } else {
+      coverPh.textContent = b.title.length > 16 ? b.title.slice(0,16) + '…' : b.title;
+    }
+  });
 });
 
 function openModal(b) {
@@ -139,47 +170,26 @@ function openModal(b) {
     ${seriesHtml}
   `;
 
-  const q = encodeURIComponent(b.title.replace(/\s+(series|trilogy)$/i,''));
-  const a = encodeURIComponent(b.author.split(' ').pop());
-  fetch(`https://openlibrary.org/search.json?title=${q}&author=${a}&limit=1&fields=cover_i`)
-    .then(r => r.json()).then(data => {
-      const id = data?.docs?.[0]?.cover_i;
-      const ph = document.querySelector('.modal-cover-placeholder');
-      if (id && ph) {
-        const img = document.createElement('img');
-        img.className = 'modal-cover';
-        img.src = `https://covers.openlibrary.org/b/id/${id}-L.jpg`;
-        img.alt = b.title;
-        img.onerror = () => img.style.display = 'none';
-        ph.replaceWith(img);
-      } else if (ph) { ph.textContent = 'Cover unavailable'; }
-    }).catch(() => { const ph = document.querySelector('.modal-cover-placeholder'); if(ph) ph.textContent = 'Cover unavailable'; });
+  fetchCover(b, url => {
+    const ph = document.querySelector('.modal-cover-placeholder');
+    if (!ph) return;
+    if (url) {
+      const img = document.createElement('img');
+      img.className = 'modal-cover';
+      img.src = url.replace('-M.jpg','-L.jpg');
+      img.alt = b.title;
+      img.onerror = () => ph.remove();
+      img.onload = () => ph.replaceWith(img);
+    } else {
+      ph.textContent = 'Cover unavailable';
+    }
+  });
 
   document.getElementById('modalOverlay').classList.add('open');
 }
 
 document.getElementById('modalClose').addEventListener('click', () => document.getElementById('modalOverlay').classList.remove('open'));
 document.getElementById('modalOverlay').addEventListener('click', e => { if(e.target.id==='modalOverlay') document.getElementById('modalOverlay').classList.remove('open'); });
-
-const toggle = document.getElementById('themeToggle');
-const moon = document.getElementById('iconMoon');
-const sun = document.getElementById('iconSun');
-if (localStorage.getItem('theme') === 'dark') {
-  document.documentElement.setAttribute('data-theme','dark');
-  moon.style.display = 'none'; sun.style.display = 'block';
-}
-toggle.addEventListener('click', () => {
-  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-  if (dark) {
-    document.documentElement.removeAttribute('data-theme');
-    localStorage.setItem('theme','light');
-    moon.style.display = 'block'; sun.style.display = 'none';
-  } else {
-    document.documentElement.setAttribute('data-theme','dark');
-    localStorage.setItem('theme','dark');
-    moon.style.display = 'none'; sun.style.display = 'block';
-  }
-});
 
 const outer = document.getElementById('timelineOuter');
 let down=false, sx, sl;

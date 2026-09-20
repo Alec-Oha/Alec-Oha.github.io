@@ -16,7 +16,9 @@
     </script>
 </head>
 <body>
+    {{ partial "nav.html" . }}
     {{ block "main" . }}{{ end }}
+    <script src="/js/main.js"></script>
     {{ block "scripts" . }}{{ end }}
 </body>
 </html>
