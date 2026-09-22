@@ -213,7 +213,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
 .timeline-outer:active { cursor: grabbing; }
 .timeline-outer::-webkit-scrollbar { height: 3px; }
 .timeline-outer::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 2px; }
-.timeline-canvas { position: relative; height: 760px; }
+.timeline-canvas { position: relative; height: 900px; }
 .tl-line { position: absolute; left: 0; right: 0; height: 1.5px; background: var(--yellow); }
 
 .year-band { position: absolute; top: 0; bottom: 0; background: rgba(0,0,0,0.012); border-left: 0.5px solid var(--border); }

@@ -1,4 +1,4 @@
-const LINE_Y = 280, COL_W = 195, START = 80, LEAD = 60, CARD_H = 260;
+const LINE_Y = 400, COL_W = 195, START = 80, LEAD = 60, CARD_H = 280;
 
 const books = [
   // 2023
@@ -48,7 +48,7 @@ let xi = 0;
 const canvas = document.getElementById('tlCanvas');
 const totalW = START + xi * COL_W + START;
 canvas.style.minWidth = totalW + 'px';
-canvas.style.height = '760px';
+canvas.style.height = '900px';
 document.getElementById('tlLine').style.top = LINE_Y + 'px';
 
 let xi2 = 0;
@@ -79,20 +79,44 @@ function getDot(b) {
   return {size:10,border:'2px solid var(--c-fiction)'};
 }
 
-// Fetch a cover thumbnail from Open Library. Result is cached on the book object
-// so the modal doesn't need to re-fetch when the card cover already resolved it.
-function fetchCover(b, callback) {
+// Cover lookup tries several queries/sources in order and caches whatever it finds
+// on the book object, so the modal doesn't need to re-fetch when the card already
+// resolved a cover. For a series, we search using the first book's title, since
+// series/omnibus names rarely have their own cover art.
+async function openLibraryCover(title, author) {
+  try {
+    const q = encodeURIComponent(title);
+    const a = author ? `&author=${encodeURIComponent(author)}` : '';
+    const r = await fetch(`https://openlibrary.org/search.json?title=${q}${a}&limit=1&fields=cover_i`);
+    const data = await r.json();
+    const id = data?.docs?.[0]?.cover_i;
+    return id ? `https://covers.openlibrary.org/b/id/${id}-M.jpg` : null;
+  } catch { return null; }
+}
+
+async function googleBooksCover(title, author) {
+  try {
+    const q = encodeURIComponent(`intitle:${title}${author ? ' inauthor:' + author : ''}`);
+    const r = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${q}&maxResults=1`);
+    const data = await r.json();
+    const links = data?.items?.[0]?.volumeInfo?.imageLinks;
+    const link = links?.thumbnail || links?.smallThumbnail;
+    return link ? link.replace(/^http:/, 'https:') : null;
+  } catch { return null; }
+}
+
+async function fetchCover(b, callback) {
   if (b._coverUrl !== undefined) { callback(b._coverUrl); return; }
-  const q = encodeURIComponent(b.title.replace(/\s+(series|trilogy)$/i,''));
-  const a = encodeURIComponent(b.author.split(' ').pop());
-  fetch(`https://openlibrary.org/search.json?title=${q}&author=${a}&limit=1&fields=cover_i`)
-    .then(r => r.json())
-    .then(data => {
-      const id = data?.docs?.[0]?.cover_i;
-      b._coverUrl = id ? `https://covers.openlibrary.org/b/id/${id}-M.jpg` : null;
-      callback(b._coverUrl);
-    })
-    .catch(() => { b._coverUrl = null; callback(null); });
+  const title = (b.isSeries && b.series && b.series.length) ? b.series[0] : b.title.replace(/\s+(series|trilogy)$/i, '');
+  const authorLast = b.author.split(' ').pop();
+
+  let url = await openLibraryCover(title, authorLast);
+  if (!url) url = await openLibraryCover(title, null);
+  if (!url) url = await googleBooksCover(title, authorLast);
+  if (!url) url = await googleBooksCover(title, null);
+
+  b._coverUrl = url;
+  callback(url);
 }
 
 books.forEach(b => {
@@ -176,7 +200,7 @@ function openModal(b) {
     if (url) {
       const img = document.createElement('img');
       img.className = 'modal-cover';
-      img.src = url.replace('-M.jpg','-L.jpg');
+      img.src = url.includes('-M.jpg') ? url.replace('-M.jpg','-L.jpg') : url;
       img.alt = b.title;
       img.onerror = () => ph.remove();
       img.onload = () => ph.replaceWith(img);
