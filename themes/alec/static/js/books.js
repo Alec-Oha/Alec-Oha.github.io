@@ -105,18 +105,20 @@ async function googleBooksCover(title, author) {
   } catch { return null; }
 }
 
-async function fetchCover(b, callback) {
-  if (b._coverUrl !== undefined) { callback(b._coverUrl); return; }
+// One shared promise per book so the desktop card, mobile row and modal never double-fetch.
+async function resolveCover(b) {
   const title = (b.isSeries && b.series && b.series.length) ? b.series[0] : b.title.replace(/\s+(series|trilogy)$/i, '');
   const authorLast = b.author.split(' ').pop();
-
   let url = await openLibraryCover(title, authorLast);
   if (!url) url = await openLibraryCover(title, null);
   if (!url) url = await googleBooksCover(title, authorLast);
   if (!url) url = await googleBooksCover(title, null);
+  return url;
+}
 
-  b._coverUrl = url;
-  callback(url);
+function fetchCover(b, callback) {
+  if (!b._coverP) b._coverP = resolveCover(b);
+  b._coverP.then(callback);
 }
 
 books.forEach(b => {
@@ -171,6 +173,48 @@ books.forEach(b => {
     }
   });
 });
+
+// ── MOBILE LAYOUT: vertical list, newest first (shown via CSS at <=700px) ──
+const tlMobile = document.getElementById('tlMobile');
+if (tlMobile) {
+  [2026,2025,2024,2023].forEach(yr => {
+    const grp = books.filter(b => b.year === yr).reverse();
+    if (!grp.length) return;
+    const yEl = document.createElement('div');
+    yEl.className = 'tlm-year';
+    yEl.textContent = yr;
+    tlMobile.appendChild(yEl);
+    const list = document.createElement('div');
+    list.className = 'tlm-list';
+    grp.forEach(b => {
+      const ts = getTag(b);
+      const dc = getDot(b);
+      const row = document.createElement('div');
+      row.className = 'tlm-item';
+      row.innerHTML = `
+        <span class="tlm-dot" style="width:${dc.size}px;height:${dc.size}px;border:${dc.border};"></span>
+        <div class="tlm-cover"><div class="tlm-cover-ph"></div></div>
+        <div class="tlm-info">
+          <span class="card-tag" style="background:${ts.bg};color:${ts.c};">${ts.label}</span>
+          <div class="card-title">${b.title}</div>
+          <div class="card-author">${b.author}</div>
+          ${b.isSeries && b.series ? `<div class="tlm-sub">${b.series.length} books</div>` : ''}
+          ${b.reviewed ? `<div class="card-rating">${b.rating}</div>` : ''}
+        </div>`;
+      row.addEventListener('click', () => openModal(b));
+      list.appendChild(row);
+      const ph = row.querySelector('.tlm-cover-ph');
+      fetchCover(b, url => {
+        if (!url) return;
+        const img = document.createElement('img');
+        img.src = url; img.alt = b.title; img.loading = 'lazy';
+        img.onload = () => ph.replaceWith(img);
+      });
+    });
+    tlMobile.appendChild(list);
+  });
+}
+
 
 function openModal(b) {
   const ts = getTag(b);

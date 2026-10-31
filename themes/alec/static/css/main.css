@@ -177,12 +177,77 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
 .back-link { display: inline-block; margin-top: 3rem; padding: 0.6rem 1.25rem; border: 0.5px solid var(--border-mid); border-radius: 4px; color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: all 0.2s; }
 .back-link:hover { background: var(--surface); color: var(--text); }
 
+html { -webkit-text-size-adjust: 100%; }
+.tl-mobile { display: none; }
+
+@media (hover: hover) {
+    .event-dot:hover { transform: translateX(-50%) translateY(-50%) scale(1.5); }
+}
+
+/* ── PHONE LAYOUT (<=700px) ───────────────────────────────── */
 @media (max-width: 700px) {
+    /* nav */
+    .topnav { padding: 0 0.75rem; gap: 0.5rem; }
     .topnav-links { display: none; }
-    .hamburger { display: flex; }
-    .exp-cols { grid-template-columns: 1fr; gap: 1.5rem; }
-    .writing-row { grid-template-columns: 1fr; gap: 0.2rem; }
+    .hamburger { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; padding: 0; }
+    .theme-toggle { width: 40px !important; height: 40px !important; }
+    .theme-toggle svg { width: 24px !important; height: 24px !important; min-width: 24px !important; min-height: 24px !important; }
+    .drawer { height: calc(100dvh - var(--nav-h)); }
+    .drawer-link { padding: 0.25rem 0 1rem; }
+
+    /* layout + type */
+    body { font-size: 14px; }
+    .hero-bio { padding: calc(var(--nav-h) + 1.75rem) 1.25rem 2rem; }
+    .hero-name { font-size: 1.75rem; }
+    .bio-text { font-size: 0.95rem; line-height: 1.75; }
+    .bio-links { font-size: 0.95rem; gap: 0.6rem; }
+    .bio-links a { padding: 0.35rem 0; }
+    .content-section { padding: 2.25rem 1.25rem; }
+    .section-title { font-size: 1.5rem; }
+
+    /* experience */
+    .exp-cols { grid-template-columns: 1fr; gap: 1.75rem; }
     .exp-header { flex-direction: column; gap: 0; }
+    .exp-label { font-size: 0.75rem; }
+    .exp-bullets { font-size: 0.85rem; margin-left: 1.1rem; }
+    .skill-tag { font-size: 0.8rem; padding: 0.3rem 0.7rem; }
+
+    /* projects */
+    .project-featured { padding: 1rem; }
+    .project-row { grid-template-columns: 1fr; }
+    .project-badge, .blog-tag { font-size: 0.7rem; }
+
+    /* writing: rating + genre inline above title */
+    .writing-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .w-meta { flex-direction: row; align-items: baseline; gap: 0.6rem; padding-top: 0; }
+    .w-genre { font-size: 0.72rem; }
+    .w-main p, .blog-row p { font-size: 0.85rem; }
+
+    /* footer */
+    .site-footer { padding: 1.5rem 1.25rem; }
+    .site-footer .container { flex-wrap: wrap; row-gap: 0.25rem; }
+
+    /* single posts */
+    .content { padding: calc(var(--nav-h) + 2rem) 1.25rem 4rem; }
+    .review-header { margin-bottom: 2rem; padding-bottom: 1.5rem; }
+    .review-content { font-size: 0.98rem; line-height: 1.8; }
+    .review-content ul, .review-content ol { margin-left: 1.25rem; }
+    .back-link { padding: 0.75rem 1.25rem; }
+
+    /* books: swap horizontal timeline for vertical list */
+    .books-page { padding-top: calc(var(--nav-h) + 1.75rem); }
+    .books-header, .books-legend { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .page-sub { font-size: 0.8rem; }
+    .legend-item { font-size: 0.78rem; }
+    .timeline-outer { display: none; }
+    .tl-mobile { display: block; padding: 0.5rem 1.25rem 2rem; }
+
+    /* modal as bottom sheet */
+    .modal-overlay { align-items: flex-end; padding: 0; }
+    .modal { max-width: none; max-height: 88dvh; border-radius: 12px 12px 0 0; border-bottom: none; }
+    .modal-inner { padding: 1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom)); }
+    .modal-close { width: 44px; height: 44px; top: 0.25rem; right: 0.25rem; font-size: 1.2rem; }
+    .modal-cover { max-height: 220px; }
 }
 
 /* ── BOOKS TIMELINE ──────────────────────────────────────── */
@@ -223,7 +288,6 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
 .year-label { font-family: var(--font-serif); font-size: 2rem; color: var(--yellow); margin-top: 0.35rem; white-space: nowrap; letter-spacing: 0.02em; }
 
 .event-dot { position: absolute; border-radius: 50%; background: var(--bg); transform: translateX(-50%) translateY(-50%); z-index: 3; cursor: pointer; transition: transform 0.2s, border-color 0.2s, background 0.2s; }
-.event-dot:hover { transform: translateX(-50%) translateY(-50%) scale(1.5); }
 .event-card { position: absolute; transform: translateX(-50%); cursor: pointer; width: 170px; }
 .event-card:hover .card-title { text-decoration: underline; text-underline-offset: 3px; }
 .card-cover { width: 96px; height: 130px; object-fit: cover; border-radius: 3px; display: block; margin: 0 auto 6px; border: 1px solid var(--border-mid); box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
@@ -255,3 +319,18 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
 .modal-series-book:last-child { border-bottom: none; }
 .modal-meta { margin-bottom: 0.85rem; }
 .modal-meta-item { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+
+/* ── BOOKS MOBILE LIST ───────────────────────────────────── */
+.tlm-year { font-family: var(--font-serif); font-size: 1.7rem; color: var(--yellow); line-height: 1; margin: 1.75rem 0 0.25rem; }
+.tlm-list { border-left: 1.5px solid var(--yellow); margin-left: 7px; }
+.tlm-item { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 0.9rem; padding: 0.9rem 0 0.9rem 1.25rem; border-bottom: 0.5px solid var(--border); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.tlm-item:last-child { border-bottom: none; }
+.tlm-item:active { background: var(--surface); }
+.tlm-dot { position: absolute; left: -0.75px; top: 2.2rem; border-radius: 50%; background: var(--bg); transform: translate(-50%, -50%); }
+.tlm-cover img, .tlm-cover-ph { width: 56px; height: 80px; border-radius: 3px; border: 1px solid var(--border-mid); display: block; }
+.tlm-cover img { object-fit: cover; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
+.tlm-cover-ph { background: var(--surface); }
+.tlm-info { min-width: 0; }
+.tlm-info .card-title { font-size: 0.9rem; }
+.tlm-info .card-author { font-size: 0.78rem; }
+.tlm-sub { font-size: 0.72rem; color: var(--text-dim); margin-top: 2px; }
