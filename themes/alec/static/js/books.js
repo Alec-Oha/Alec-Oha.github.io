@@ -79,46 +79,10 @@ function getDot(b) {
   return {size:10,border:'2px solid var(--c-fiction)'};
 }
 
-// Cover lookup tries several queries/sources in order and caches whatever it finds
-// on the book object, so the modal doesn't need to re-fetch when the card already
-// resolved a cover. For a series, we search using the first book's title, since
-// series/omnibus names rarely have their own cover art.
-async function openLibraryCover(title, author) {
-  try {
-    const q = encodeURIComponent(title);
-    const a = author ? `&author=${encodeURIComponent(author)}` : '';
-    const r = await fetch(`https://openlibrary.org/search.json?title=${q}${a}&limit=1&fields=cover_i`);
-    const data = await r.json();
-    const id = data?.docs?.[0]?.cover_i;
-    return id ? `https://covers.openlibrary.org/b/id/${id}-M.jpg` : null;
-  } catch { return null; }
-}
-
-async function googleBooksCover(title, author) {
-  try {
-    const q = encodeURIComponent(`intitle:${title}${author ? ' inauthor:' + author : ''}`);
-    const r = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${q}&maxResults=1`);
-    const data = await r.json();
-    const links = data?.items?.[0]?.volumeInfo?.imageLinks;
-    const link = links?.thumbnail || links?.smallThumbnail;
-    return link ? link.replace(/^http:/, 'https:') : null;
-  } catch { return null; }
-}
-
-// One shared promise per book so the desktop card, mobile row and modal never double-fetch.
-async function resolveCover(b) {
-  const title = (b.isSeries && b.series && b.series.length) ? b.series[0] : b.title.replace(/\s+(series|trilogy)$/i, '');
-  const authorLast = b.author.split(' ').pop();
-  let url = await openLibraryCover(title, authorLast);
-  if (!url) url = await openLibraryCover(title, null);
-  if (!url) url = await googleBooksCover(title, authorLast);
-  if (!url) url = await googleBooksCover(title, null);
-  return url;
-}
-
+// Covers are self-hosted at /images/books/<id>.jpg (downloaded by fetch_covers.py).
+// A missing file falls back to the text placeholder via each img's onerror.
 function fetchCover(b, callback) {
-  if (!b._coverP) b._coverP = resolveCover(b);
-  b._coverP.then(callback);
+  callback(`/images/books/${b.id}.jpg`);
 }
 
 books.forEach(b => {
@@ -166,6 +130,7 @@ books.forEach(b => {
       img.className = 'card-cover';
       img.src = url;
       img.alt = b.title;
+      img.loading = 'lazy';
       img.onerror = () => { coverPh.textContent = b.title.length > 16 ? b.title.slice(0,16) + '…' : b.title; };
       img.onload = () => coverPh.replaceWith(img);
     } else {
@@ -244,7 +209,7 @@ function openModal(b) {
     if (url) {
       const img = document.createElement('img');
       img.className = 'modal-cover';
-      img.src = url.includes('-M.jpg') ? url.replace('-M.jpg','-L.jpg') : url;
+      img.src = url;
       img.alt = b.title;
       img.onerror = () => ph.remove();
       img.onload = () => ph.replaceWith(img);
