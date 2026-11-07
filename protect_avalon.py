@@ -56,7 +56,7 @@ GATE = """<!doctype html>
 @media (prefers-color-scheme:dark){:root{--bg:#0d0f13;--fg:#e9eaec;--muted:#8b909a;--line:#2a2e36;--accent:#e9eaec;--err:#f97066}}
 *{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font:15px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 main{min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px 16px}
-form{width:100%;max-width:340px}
+form{width:100%;max-width:340px;position:relative}
 h1{font:600 20px/1.3 system-ui,sans-serif;margin:0 0 4px;letter-spacing:.02em}
 p{margin:0 0 20px;color:var(--muted);font-size:13px}
 input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--fg);font:inherit}
@@ -64,10 +64,12 @@ input:focus{outline:2px solid var(--accent);outline-offset:1px}
 button{margin-top:10px;width:100%;padding:11px;border:0;border-radius:6px;background:var(--accent);color:var(--bg);font:inherit;font-weight:600;cursor:pointer}
 button:disabled{opacity:.6;cursor:wait}
 .err{min-height:20px;margin-top:10px;color:var(--err);font-size:13px}
-.sword{width:100%;aspect-ratio:__SWORD_RATIO__;margin:0 0 28px;background:var(--fg);
+/* upright sword left of the form, spanning title to Unlock button (err line excluded) */
+.sword{position:absolute;top:0;bottom:30px;right:calc(100% + 24px);aspect-ratio:__SWORD_RATIO__;background:var(--fg);
   -webkit-mask:url(__SWORD__) center/contain no-repeat;mask:url(__SWORD__) center/contain no-repeat;
   animation:spin 3.2s linear infinite}
-@keyframes spin{from{transform:perspective(700px) rotateX(0deg)}to{transform:perspective(700px) rotateX(360deg)}}
+@keyframes spin{from{transform:perspective(700px) rotateY(0deg)}to{transform:perspective(700px) rotateY(360deg)}}
+@media (max-width:560px){main{padding-left:104px}.sword{right:calc(100% + 16px)}}
 @media (prefers-reduced-motion:reduce){.sword{animation:none}}
 </style></head>
 <body><main><form id="f" hidden>
