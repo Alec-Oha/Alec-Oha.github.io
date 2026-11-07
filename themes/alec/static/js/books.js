@@ -130,7 +130,6 @@ books.forEach(b => {
       img.className = 'card-cover';
       img.src = url;
       img.alt = b.title;
-      img.loading = 'lazy';
       img.onerror = () => { coverPh.textContent = b.title.length > 16 ? b.title.slice(0,16) + '…' : b.title; };
       img.onload = () => coverPh.replaceWith(img);
     } else {
@@ -172,7 +171,7 @@ if (tlMobile) {
       fetchCover(b, url => {
         if (!url) return;
         const img = document.createElement('img');
-        img.src = url; img.alt = b.title; img.loading = 'lazy';
+        img.src = url; img.alt = b.title;
         img.onload = () => ph.replaceWith(img);
       });
     });
