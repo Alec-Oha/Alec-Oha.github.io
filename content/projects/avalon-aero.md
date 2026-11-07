@@ -3,7 +3,7 @@ title: "Avalon Aero: Excalibur"
 type: "project"
 date: 2026-01-01
 summary: "Co-founded aerospace startup competing in the DARPA LIFT Challenge."
-external_link: "https://www.avalon-aero.com/"
+external_link: "/avalon/"
 badge: "DARPA LIFT Challenge"
 ---
 
@@ -27,4 +27,4 @@ My background in aerospace manufacturing and CNC machining has been directly app
 
 ### Learn More
 
-Visit [avalon-aero.com](https://www.avalon-aero.com/) for more on the project.
+The project site is private. [View it here](/avalon/) (password required).
