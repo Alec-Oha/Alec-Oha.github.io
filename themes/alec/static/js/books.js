@@ -37,6 +37,8 @@ const books = [
   {id:'gaea-trilogy',year:2026,pos:'below',type:'fiction',reviewed:true,rating:'7/10',reviewLink:'/posts/gaea-series-review/',isSeries:true,title:'The Gaea Trilogy',author:'John Varley',published:1979,subgenre:'Science Fiction',series:["Titan","Wizard","Demon"]},
   {id:'amina-al-sirafi',year:2026,pos:'above',type:'fiction',reviewed:true,rating:'6.6/10',reviewLink:'/posts/amina-al-sirafi-review/',title:'The Adventures of Amina al-Sirafi',author:'Shannon Chakraborty',published:2023,subgenre:'Historical Fantasy'},
   {id:'hierarchy',year:2026,pos:'below',type:'fiction',isSeries:true,title:'The Hierarchy Series',author:'James Islington',published:2023,subgenre:'Epic Fantasy',series:["The Will of the Many","The Strength of the Few"]},
+  {id:'lions-of-al-rassan',year:2026,pos:'above',type:'fiction',reviewed:true,rating:'7.6/10',reviewLink:'/posts/lions-of-al-rassan-review/',title:'The Lions of Al-Rassan',author:'Guy Gavriel Kay',published:1995,subgenre:'Historical Fantasy'},
+  {id:'devils',year:2026,pos:'below',type:'fiction',title:'The Devils',author:'Joe Abercrombie',published:2025,subgenre:'Grimdark Fantasy'},
 ];
 
 // assign x positions

@@ -4,7 +4,7 @@ type: "book-review"
 book_author: "Shannon Chakraborty"
 genre: "Fantasy"
 rating: 6.6
-weight: 4
+weight: 5
 date: 2024-01-01
 summary: "Picked it up for the cover. A legendary pirate, one final score, Arabian Sea. Surprisingly well-researched fantasy rooted in mythology and Arab culture."
 ---

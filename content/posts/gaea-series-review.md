@@ -4,7 +4,7 @@ type: "book-review"
 book_author: "John Varley"
 genre: "Sci-Fi"
 rating: 7
-weight: 3
+weight: 4
 date: 2024-01-01
 summary: "Great genre blend of sci-fi and fantasy. Book 2 nearly broke me with centaur biology. Book 3 redeemed the whole thing."
 ---

@@ -4,7 +4,7 @@ type: "book-review"
 book_author: "Kurt Vonnegut"
 genre: "Sci-Fi"
 rating: 4.5
-weight: 7
+weight: 8
 date: 2024-01-01
 summary: "Classic Vonnegut absurdity, fate, free will, abuse of power. Short book that felt long."
 ---

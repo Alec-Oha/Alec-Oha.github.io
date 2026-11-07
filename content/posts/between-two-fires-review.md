@@ -4,7 +4,7 @@ type: "book-review"
 book_author: "Christopher Buehlman"
 genre: "Historical"
 rating: 5
-weight: 6
+weight: 7
 date: 2024-01-01
 summary: "A knight and a girl crossing plague-stricken France. Horror meets historical fiction, outside my comfort zone, but perfectly average seems fair."
 ---

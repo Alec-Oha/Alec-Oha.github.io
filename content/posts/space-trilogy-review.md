@@ -5,7 +5,7 @@ book_author: "C.S. Lewis"
 book_published: "1938-1945"
 genre: "Sci-Fi"
 rating: 2.6
-weight: 9
+weight: 10
 date: 2024-01-01
 summary: "Didn't finish this one. Felt more like a Christian allegory than the alien battles and spaceships I was expecting."
 ---

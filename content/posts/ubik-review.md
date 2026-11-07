@@ -4,7 +4,7 @@ type: "book-review"
 book_author: "Philip K. Dick"
 genre: "Sci-Fi"
 rating: 4.2
-weight: 8
+weight: 9
 date: 2024-01-01
 summary: "Reality breaks down, time regresses, Ubik keeps appearing. Provocative questions, unsatisfying narrative. Not where to start with Dick."
 ---

@@ -190,8 +190,8 @@ html { -webkit-text-size-adjust: 100%; }
     .topnav { padding: 0 0.75rem; gap: 0.5rem; }
     .topnav-links { display: none; }
     .hamburger { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; padding: 0; }
-    .theme-toggle { width: 40px !important; height: 40px !important; }
-    .theme-toggle svg { width: 24px !important; height: 24px !important; min-width: 24px !important; min-height: 24px !important; }
+    .theme-toggle { width: 36px !important; height: 36px !important; }
+    .theme-toggle svg { width: 20px !important; height: 20px !important; min-width: 20px !important; min-height: 20px !important; }
     .drawer { height: calc(100dvh - var(--nav-h)); }
     .drawer-link { padding: 0.25rem 0 1rem; }
 
