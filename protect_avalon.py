@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "static" / "avalon"
 PAGES = ["index.html", "partners.html", "contact.html"]
 MODEL = "models/Excalibur_Assembly.glb"
+SWORD = ROOT / "avalon-sword.png"  # spinning sword on the password screen
 ITERATIONS = 600_000
 
 
@@ -63,9 +64,14 @@ input:focus{outline:2px solid var(--accent);outline-offset:1px}
 button{margin-top:10px;width:100%;padding:11px;border:0;border-radius:6px;background:var(--accent);color:var(--bg);font:inherit;font-weight:600;cursor:pointer}
 button:disabled{opacity:.6;cursor:wait}
 .err{min-height:20px;margin-top:10px;color:var(--err);font-size:13px}
+.sword{width:100%;aspect-ratio:__SWORD_RATIO__;margin:0 0 28px;background:var(--fg);
+  -webkit-mask:url(__SWORD__) center/contain no-repeat;mask:url(__SWORD__) center/contain no-repeat;
+  animation:spin 3.2s linear infinite}
+@keyframes spin{from{transform:perspective(700px) rotateX(0deg)}to{transform:perspective(700px) rotateX(360deg)}}
+@media (prefers-reduced-motion:reduce){.sword{animation:none}}
 </style></head>
 <body><main><form id="f" hidden>
-<h1>Avalon Aero</h1><p>This page is private. Enter the password to continue.</p>
+__SWORD_DIV__<h1>Avalon Aero</h1><p>This page is private. Enter the password to continue.</p>
 <input id="pw" type="password" autocomplete="current-password" aria-label="Password" autofocus required>
 <button id="go" type="submit">Unlock</button><div class="err" id="err" role="alert"></div>
 </form></main>
@@ -111,6 +117,17 @@ form.addEventListener('submit', async e => {
 """
 
 
+def gate_html():
+    if not SWORD.is_file():
+        return GATE.replace("__SWORD_DIV__", "")
+    from struct import unpack
+    data = SWORD.read_bytes()
+    w, h = unpack(">II", data[16:24])  # PNG width/height
+    uri = "data:image/png;base64," + base64.b64encode(data).decode()
+    return (GATE.replace("__SWORD_DIV__", '<div class="sword" aria-hidden="true"></div>\n')
+                .replace("__SWORD_RATIO__", f"{w}/{h}").replace("__SWORD__", uri))
+
+
 def main():
     if len(sys.argv) != 3:
         sys.exit(__doc__)
@@ -140,7 +157,7 @@ def main():
             "page": base64.b64encode(encrypt(key, html.encode("utf-8"))).decode(),
             "model": "model.bin" if has_model else None,
         }
-        (OUT / name).write_text(GATE.replace("__CFG__", json.dumps(cfg)), encoding="utf-8")
+        (OUT / name).write_text(gate_html().replace("__CFG__", json.dumps(cfg)), encoding="utf-8")
         print(f"ok  {name}{'  (+ model)' if has_model else ''}")
     print(f"\nWrote {OUT}")
 
