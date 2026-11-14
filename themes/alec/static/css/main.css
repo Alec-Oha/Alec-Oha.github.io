@@ -11,6 +11,10 @@
     --badge-bg: #e8f0fe;
     --badge-color: #1a56db;
     --yellow: #F5C518;
+    --burnt-orange: #D9731A;
+    --orange-border: rgba(217,115,26,0.45);
+    --orange-badge-bg: rgba(217,115,26,0.14);
+    --orange-badge: #B3580F;
     --font-serif: 'DM Serif Display', Georgia, serif;
     --font-mono: 'DM Mono', monospace;
     --nav-h: 52px;
@@ -28,6 +32,7 @@
     --icon: #eeeeee;
     --badge-bg: rgba(26,86,219,0.2);
     --badge-color: #6b9ef0;
+    --orange-badge: #E8873A;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,9 +54,9 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
     transition: background 0.2s;
 }
 .topnav-links { display: flex; gap: 2rem; align-items: center; }
-.topnav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+.topnav-links a { color: var(--text-muted); text-decoration: none; font-family: var(--font-mono); font-size: 1rem; font-weight: 400; transition: color 0.2s; }
 .topnav-links a:hover { color: var(--text); }
-.resume-link { color: var(--text) !important; font-weight: 500; }
+.resume-link { color: var(--text) !important; }
 
 .theme-toggle:hover { background: var(--surface) !important; }
 .nav-tools { display: flex; align-items: center; gap: 0.5rem; }
@@ -79,7 +84,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
     transition: right 0.3s ease;
 }
 .drawer.open { right: 0; }
-.drawer-link { color: var(--text); text-decoration: none; font-size: 1.2rem; font-family: var(--font-serif); padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
+.drawer-link { color: var(--text); text-decoration: none; font-size: 0.95rem; font-family: var(--font-mono); padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
 .drawer-link:hover { color: var(--text-muted); }
 .drawer-overlay { display: none; position: fixed; inset: 0; z-index: 198; background: rgba(0,0,0,0.2); }
 .drawer-overlay.visible { display: block; }
@@ -139,7 +144,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
 /* PROJECTS */
 .project-featured {
     padding: 1.25rem;
-    border: 1px solid var(--badge-color);
+    border: 1px solid var(--orange-border);
     border-radius: 6px;
     margin-bottom: 0.5rem;
     background: var(--bg);
@@ -160,7 +165,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
 .project-row:last-child { border-bottom: none; }
 .project-row h3 { font-size: 0.92rem; font-weight: 500; color: var(--text); margin-bottom: 0.25rem; }
 .project-row p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
-.project-badge { font-size: 0.65rem; background: var(--badge-bg); color: var(--badge-color); padding: 2px 7px; border-radius: 4px; white-space: nowrap; font-weight: 500; }
+.project-badge { font-size: 0.65rem; background: var(--orange-badge-bg); color: var(--orange-badge); padding: 2px 7px; border-radius: 4px; white-space: nowrap; font-weight: 500; }
 
 /* WRITING */
 .writing-block { margin-bottom: 2rem; }
@@ -177,7 +182,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
 .w-main p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
 .blog-row { padding: 0.9rem 0; border-bottom: 0.5px solid var(--border); }
 .blog-row:last-child { border-bottom: none; }
-.blog-tag { display: inline-block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--badge-color); background: var(--badge-bg); padding: 2px 7px; border-radius: 4px; margin-bottom: 0.35rem; font-weight: 500; }
+.blog-tag { display: inline-block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange-badge); background: var(--orange-badge-bg); padding: 2px 7px; border-radius: 4px; margin-bottom: 0.35rem; font-weight: 500; }
 .blog-row h4 { font-size: 0.92rem; font-weight: 500; color: var(--text); margin-bottom: 0.2rem; }
 .blog-row h4 a { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border-mid); }
 .blog-row h4 a:hover { color: var(--text-muted); }
