@@ -1,0 +1,36 @@
+{{- /* Link previews, icons and analytics. Included in the <head> of every page by baseof.html. */ -}}
+{{- $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
+{{- $desc := .Site.Params.description -}}
+{{- with .Description }}{{ $desc = . }}{{ else }}{{ with .Params.summary }}{{ $desc = . }}{{ end }}{{ end -}}
+{{- $desc = $desc | plainify | truncate 200 -}}
+{{- $image := .Params.image | default "images/og-card.png" | absURL -}}
+    <meta name="description" content="{{ $desc }}">
+    <meta name="author" content="{{ .Site.Params.author }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+
+    <!-- Link previews (LinkedIn, iMessage, Slack, X, etc.) -->
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $desc }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:image" content="{{ $image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Alec Sevan Ohanesian: Production Manager, Aerospace, MBA at UCLA Anderson">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $desc }}">
+    <meta name="twitter:image" content="{{ $image }}">
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#0f0f0f">
+{{- with .Site.Params.goatcounter }}
+
+    <!-- Visitor counts (GoatCounter: no cookies, no personal data). Set goatcounter in hugo.toml. -->
+    <script data-goatcounter="https://{{ . }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+{{- end }}

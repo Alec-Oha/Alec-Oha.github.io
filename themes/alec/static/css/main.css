@@ -122,6 +122,12 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
 .bio-links a:hover { color: var(--text-muted); }
 .bio-links span { color: var(--text-dim); }
 
+/* 404 PAGE */
+.notfound { min-height: calc(100vh - 80px); display: flex; align-items: center; padding: calc(var(--nav-h) + 3rem) 5% 3rem; border-bottom: 2px solid var(--yellow); }
+.notfound .container { width: 100%; }
+.notfound-code { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--yellow); margin-bottom: 0.75rem; }
+.notfound-text { color: var(--text-muted); max-width: 520px; margin-bottom: 1.25rem; }
+
 /* SECTIONS */
 .content-section { padding: 3rem 5%; border-bottom: 0.5px solid var(--border); background: var(--bg); transition: background 0.2s; }
 .content-section.alt { background: var(--bg-alt); }

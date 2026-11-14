@@ -6,6 +6,9 @@ theme = "alec"
 [params]
   description = "Production Manager & Aerospace Engineer"
   author = "Alec Ohanesian"
+  # Visitor counts: sign up free at https://www.goatcounter.com, then put your
+  # site code here (the "yourcode" in yourcode.goatcounter.com). Empty = off.
+  goatcounter = "alecohanesian"
 
 [taxonomies]
   genre = "genres"
