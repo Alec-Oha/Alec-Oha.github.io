@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    path, ellipse { fill: none; stroke: #111; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+    @media (prefers-color-scheme: dark) { path, ellipse { stroke: #f2f2f2; } }
+  </style>
+  <path d="M2.5 28 L9 4.5 L15.5 28 M5 19.5 H13"/>
+  <ellipse cx="23.8" cy="16.25" rx="5.8" ry="11.75"/>
+</svg>
