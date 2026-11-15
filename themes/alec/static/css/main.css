@@ -15,6 +15,9 @@
     --orange-border: rgba(217,115,26,0.45);
     --orange-badge-bg: rgba(217,115,26,0.14);
     --orange-badge: #B3580F;
+    --rain-color: #B8920A;      /* deeper gold so it shows on white */
+    --rain-opacity: 0.22;
+    --rain-opacity-open: 0.08;
     --font-serif: 'DM Serif Display', Georgia, serif;
     --font-mono: 'DM Mono', monospace;
     --nav-h: 52px;
@@ -33,6 +36,8 @@
     --badge-bg: rgba(26,86,219,0.2);
     --badge-color: #6b9ef0;
     --orange-badge: #E8873A;
+    --rain-color: #F5C518;
+    --rain-opacity: 0.2;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -90,7 +95,11 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-mono);
 .drawer-overlay.visible { display: block; }
 
 /* HERO */
-.hero-bio { padding: calc(var(--nav-h) + 3rem) 5% 3rem; border-bottom: 2px solid var(--yellow); }
+.hero-bio { position: relative; overflow: hidden; padding: calc(var(--nav-h) + 3rem) 5% 3rem; border-bottom: 2px solid var(--yellow); }
+.hero-bio > .container { position: relative; z-index: 1; }
+/* Faint Matrix-style rain behind the title bar text (drawn by main.js) */
+.hero-rain { position: absolute; top: var(--nav-h); left: 0; width: 100%; height: calc(100% - var(--nav-h)); z-index: 0; pointer-events: none; opacity: var(--rain-opacity); transition: opacity 0.6s ease; }
+.hero-bio:has(.about:not(.about--closed)) .hero-rain { opacity: var(--rain-opacity-open); } /* fainter while the bio is open */
 .hero-name { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--text); line-height: 1.2; margin: 0 0 0.6rem; }
 .bio-text { font-size: 1rem; color: var(--text-muted); line-height: 1.85; max-width: 580px; margin-bottom: 1rem; }
 

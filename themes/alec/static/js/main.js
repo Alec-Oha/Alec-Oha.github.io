@@ -301,3 +301,56 @@ if (hamburger) {
     });
     render();
 })();
+
+// Faint Matrix-style rain behind the title bar. Its color and strength come from CSS
+// (--rain-color / --rain-opacity), so it follows light, dark and terminal mode.
+(() => {
+    const hero = document.querySelector('.hero-bio');
+    if (!hero || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const canvas = document.createElement('canvas');
+    canvas.className = 'hero-rain';
+    canvas.setAttribute('aria-hidden', 'true');
+    hero.prepend(canvas);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // English letters and digits
+    const SIZE = 16;
+    let cols = [], W = 0, H = 0, color = '#F5C518';
+
+    function resize() {
+        const dpr = Math.min(devicePixelRatio || 1, 2);
+        W = canvas.clientWidth; H = canvas.clientHeight;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const n = Math.ceil(W / SIZE);
+        cols = Array.from({ length: n }, (_, i) => cols[i] || { y: Math.random() * -H, speed: 0.35 + Math.random() * 0.6 });
+    }
+    function readColor() {
+        color = getComputedStyle(document.documentElement).getPropertyValue('--rain-color').trim() || color;
+    }
+    resize();
+    readColor();
+    new ResizeObserver(resize).observe(canvas);
+    new MutationObserver(readColor).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+
+    let visible = true, last = 0;
+    new IntersectionObserver(e => { visible = e[0].isIntersecting; }).observe(hero);
+    function frame(now) {
+        requestAnimationFrame(frame);
+        if (!visible || now - last < 50) return; // ~20 fps keeps it calm
+        last = now;
+        // Fade what's already drawn toward transparent, leaving trails on any background.
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.12)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.font = `${SIZE}px monospace`;
+        ctx.fillStyle = color;
+        cols.forEach((c, i) => {
+            ctx.fillText(glyphs[(Math.random() * glyphs.length) | 0], i * SIZE, c.y);
+            c.y += SIZE * c.speed;
+            if (c.y > H + SIZE * 4 && Math.random() < 0.03) c.y = -SIZE * (Math.random() * 10);
+        });
+    }
+    requestAnimationFrame(frame);
+})();
